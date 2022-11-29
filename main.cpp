@@ -1,20 +1,26 @@
-﻿#include <iostream>
-#include <functional>
-#include <format>
+﻿#include "day_entry.h"
 
-#include "days/aoc_days.h"
+#include "days/day1.h"
+
+#include "window.h"
+
+#include <vector>
+#include <memory>
+#include <functional>
+#include <string>
 
 using namespace std;
 
-void run_day(int day, std::function<void()> f)
-{
-	cout << format("Running day {}:\n", day);
-	f();
-}
 
-void add_days(std::vector<std::function<void()>>& day_functions)
+void add_days(vector<DayEntry>& day_functions);
+
+
+void add_days(vector<DayEntry>& day_functions)
 {
-	day_functions.push_back(aoc::day1);
+	day_functions.push_back(DayEntry("Day 1", aoc::Day1::create));
+	day_functions.push_back(DayEntry("PLACEHOLDER", aoc::Day1::create));
+	day_functions.push_back(DayEntry("PLACEHOLDER", aoc::Day1::create));
+	day_functions.push_back(DayEntry("PLACEHOLDER", aoc::Day1::create));
 }
 
 int main(int argc, char* argv[])
@@ -35,29 +41,27 @@ int main(int argc, char* argv[])
 		}
 	}
 
-	std::vector<std::function<void()>> day_functions;
+	vector<DayEntry> day_functions;
 	add_days(day_functions);
-
 
 	if (day_to_run <= 0 || day_to_run > day_functions.size())
 	{
 		day_to_run = -1;
 	}
 
-	if (day_to_run == -1)
+	// Run specific day (without window)
+	if (day_to_run != -1)
 	{
-		for (int i = 0; i < day_functions.size(); ++i)
-		{
-			run_day(i + 1, day_functions[i]);
-		}
+		auto& day = day_functions[day_to_run - 1];
+		day.run();
 	}
 	else
 	{
-		if (day_to_run )
+		if (window_create())
 		{
-			run_day(day_to_run, day_functions[day_to_run - 1]);
+			window_run(move(day_functions));
 		}
-	}
 
-	return 0;
+		window_cleanup();
+	}
 }
