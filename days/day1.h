@@ -9,5 +9,10 @@ namespace aoc
 
 		void run() override;
 		void draw() override;
+
+	private:
+		int highest_total_ = 0;
+		int highest_total_top_3_ = 0;
+
 	};
 }

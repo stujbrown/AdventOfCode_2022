@@ -7,20 +7,16 @@
 
 namespace aoc
 {
-	int highest_total_ = 0;
-	int highest_total_top_3_ = 0;
-
 	void Day1::run()
 	{
 		std::ifstream file("inputs/day1.txt");
 		std::string line;
-
 		std::vector<int> totals;
+
 		totals.push_back(0);
 		while (std::getline(file, line))
 		{
 			const int val = atoi(line.c_str());
-
 			totals.back() += val;
 			if (val == 0)
 			{
