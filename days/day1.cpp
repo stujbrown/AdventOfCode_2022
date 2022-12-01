@@ -2,7 +2,6 @@
 #include "output.h"
 
 #include <fstream>
-#include <sstream>
 #include <string>
 #include <vector>
 
@@ -20,9 +19,7 @@ namespace aoc
 		totals.push_back(0);
 		while (std::getline(file, line))
 		{
-			std::stringstream ss(line);
-			int val = 0;
-			ss >> val;
+			const int val = atoi(line.c_str());
 
 			totals.back() += val;
 			if (val == 0)
