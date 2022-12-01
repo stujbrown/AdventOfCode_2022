@@ -17,7 +17,7 @@ void add_days(vector<DayEntry>& day_functions);
 
 void add_days(vector<DayEntry>& day_functions)
 {
-	day_functions.push_back(DayEntry("Day 1", aoc::Day1::create));
+	day_functions.push_back(DayEntry("Day 1: Calorie Counting", aoc::Day1::create));
 	day_functions.push_back(DayEntry("PLACEHOLDER", aoc::Day1::create));
 	day_functions.push_back(DayEntry("PLACEHOLDER", aoc::Day1::create));
 	day_functions.push_back(DayEntry("PLACEHOLDER", aoc::Day1::create));
