@@ -2,28 +2,24 @@
 #include "output.h"
 
 #include <fstream>
-#include <sstream>
+#include <array>
 
 namespace aoc
 {
 	void Day2::run()
 	{
-		std::ifstream file("inputs/day2.txt");
-		std::string line;
+		std::ifstream file = std::ifstream("inputs/day2.txt", std::ios_base::in);
+		std::array<char, 6> line;
 
 		total_score_response_as_types_ = 0;
 		total_score_response_as_results_ = 0;
 
-		while (std::getline(file, line))
+		while (file.getline(line.data(), line.size()) && line[0] != '\0')
 		{
-			log_.push_back(line);
+			log_.push_back(line.data());
 
-			char opponent = '0', response = '0';
-			std::stringstream ss(line);
-			ss >> opponent >> response;
-
-			const int opponent_index = opponent - 'A';
-			const int response_index = response - 'X';
+			const int opponent_index = line[0] - 'A';
+			const int response_index = line[2] - 'X';
 			{
 				const int result_score = (((opponent_index * 2) + response_index + 1) % 3) * 3;
 				total_score_response_as_types_ += (response_index + 1) + result_score;
