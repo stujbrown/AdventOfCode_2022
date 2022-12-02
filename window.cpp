@@ -193,7 +193,10 @@ void window_run(vector<DayEntry>&& day_functions)
 			{
 				if (ImGui::CollapsingHeader(entry.name()))
 				{
-					if (ImGui::Button("Run", ImVec2(200, 20)))
+					const int button_label_len = 256;
+					static char button_label[button_label_len];
+					sprintf_s(button_label, button_label_len, "Run##%s", entry.name());
+					if (ImGui::Button(button_label, ImVec2(200, 20)))
 					{
 						entry.run();
 					}
