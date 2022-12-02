@@ -16,6 +16,8 @@ namespace aoc
 
 		while (std::getline(file, line))
 		{
+			log_.push_back(line);
+
 			char opponent = '0', response = '0';
 			std::stringstream ss(line);
 			ss >> opponent >> response;
@@ -36,6 +38,7 @@ namespace aoc
 
 	void Day2::draw()
 	{
+		ImGui_print_log("Inputs##Day2Log", log_);
 		ImGui_output_field("Score for treating responses as a move type", std::format("{}", total_score_response_as_types_).c_str());
 		ImGui_output_field("Score for treating responses as game outcomes", std::format("{}", total_score_response_as_results_).c_str());
 	}

@@ -16,6 +16,7 @@ namespace aoc
 		totals.push_back(0);
 		while (std::getline(file, line))
 		{
+			log_.push_back(line);
 			const int val = atoi(line.c_str());
 			totals.back() += val;
 			if (val == 0)
@@ -32,6 +33,7 @@ namespace aoc
 
 	void Day1::draw() 
 	{
+		ImGui_print_log("Inputs##Day1Log", log_);
 		ImGui_output_field("Highest calorie total", std::format("{}", highest_total_).c_str());
 		ImGui_output_field("Highest calorie total of top 3", std::format("{}", highest_total_top_3_).c_str());
 	}

@@ -2,6 +2,7 @@
 
 #include "days/day1.h"
 #include "days/day2.h"
+#include "days/day3.h"
 
 #include "window.h"
 
@@ -20,8 +21,7 @@ void add_days(vector<DayEntry>& day_functions)
 {
 	day_functions.push_back(DayEntry("Day 1: Calorie Counting", aoc::Day1::create));
 	day_functions.push_back(DayEntry("Day 2: Rock Paper Scissors", aoc::Day2::create));
-	day_functions.push_back(DayEntry("PLACEHOLDER", aoc::Day1::create));
-	day_functions.push_back(DayEntry("PLACEHOLDER", aoc::Day1::create));
+	day_functions.push_back(DayEntry("Day 3: ", aoc::Day3::create));
 }
 
 int WinMain(int argc, char* argv[])
@@ -54,6 +54,7 @@ int WinMain(int argc, char* argv[])
 	if (day_to_run != -1)
 	{
 		auto& day = day_functions[day_to_run - 1];
+
 		day.run();
 	}
 	else

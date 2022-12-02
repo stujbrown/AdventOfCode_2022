@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <functional>
+#include <array>
 #include <format>
 #include <TChar.h>
 #include <d3d11.h>
@@ -179,7 +180,7 @@ void window_run(vector<DayEntry>&& day_functions)
 
 		if (!initial_size_set)
 		{
-			ImVec2 window_size = { 1920, 800 };
+			ImVec2 window_size = { 1000, 800 };
 			ImGui::SetNextWindowSize(window_size);
 			ImGui::SetNextWindowBgAlpha(1.0f);
 
@@ -189,19 +190,36 @@ void window_run(vector<DayEntry>&& day_functions)
 
 		ImGui::Begin("AdventOfCode", &is_open, ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoCollapse);
 		{
+			static std::array<char, 256> str_buffer;
 			for (auto& entry : day_functions)
 			{
 				if (ImGui::CollapsingHeader(entry.name()))
 				{
-					const int button_label_len = 256;
-					static char button_label[button_label_len];
-					sprintf_s(button_label, button_label_len, "Run##%s", entry.name());
-					if (ImGui::Button(button_label, ImVec2(200, 20)))
+					entry.draw();
+					ImGui::Spacing();
+
+					*std::format_to(str_buffer.begin(), "Rerun##{}", entry.name()) = '\0';
+
+					if (ImGui::BeginTable(std::format("##Table{}", entry.name()).c_str(), 2))
 					{
-						entry.run();
+						ImGui::TableNextRow();
+						ImGui::TableSetColumnIndex(0);
+						if (ImGui::Button(str_buffer.data(), ImVec2(200, 30)) || entry.touch())
+						{
+							const auto time_before = std::chrono::high_resolution_clock::now();
+							entry.run();
+							const std::chrono::nanoseconds ns = std::chrono::high_resolution_clock::now() - time_before;
+							entry.set_duration(ns.count());
+						}
+
+						ImGui::TableSetColumnIndex(1);
+						*std::format_to(str_buffer.begin(), "Last duration: {}ms", entry.last_duration() / 1000000.) = '\0';
+						ImGui::Text(str_buffer.data());
+
+						ImGui::EndTable();
 					}
 
-					entry.draw();
+					ImGui::Dummy(ImVec2(0.0f, 20.0f));
 				}
 			}
 		}

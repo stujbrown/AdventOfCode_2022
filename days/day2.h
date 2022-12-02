@@ -1,4 +1,4 @@
-#include "aoc_days.h"
+#include "day.h"
 
 namespace aoc
 {
