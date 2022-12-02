@@ -5,7 +5,7 @@
 #include <memory>
 #include <format>
 
-void ImGui_output_field(const char* label, const char* value)
+inline void ImGui_output_field(const char* label, const char* value)
 {
 	const size_t val_length = strlen(value);
 	char* val_str = (char*)_malloca(val_length + 1);

@@ -25,8 +25,10 @@ add_executable (AdventOfCode_2022
 	"main.cpp" 
 	"window.h" "window.cpp"
 	"day_entry.h"
+	"output.h"
 	"days/aoc_days.h"
-	"days/day1.h" "days/day1.cpp" "output.h")
+	"days/day1.h" "days/day1.cpp"
+	"days/day2.h" "days/day2.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET AdventOfCode_2022 PROPERTY CXX_STANDARD 20)
