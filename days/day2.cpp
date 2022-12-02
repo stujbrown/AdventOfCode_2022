@@ -3,59 +3,9 @@
 
 #include <fstream>
 #include <sstream>
-#include <string>
-#include <vector>
 
 namespace aoc
 {
-	int calc_response_as_type(char opponent, char response)
-	{
-		if (opponent == 'A')
-		{
-			if (response == 'X') return 1 + 3;
-			else if (response == 'Y') return 2 + 6;
-			else if (response == 'Z') return 3 + 0;
-		}
-		else if (opponent == 'B')
-		{
-			if (response == 'X') return 1 + 0;
-			else if (response == 'Y') return 2 + 3;
-			else if (response == 'Z') return 3 + 6;
-
-		}
-		else if (opponent == 'C')
-		{
-			if (response == 'X') return 1 + 6;
-			else if (response == 'Y') return 2 + 0;
-			else if (response == 'Z') return 3 + 3;
-		}
-		return 0;
-	}
-
-	int calc_response_as_result(char opponent, char response)
-	{
-		if (opponent == 'A')
-		{
-			if (response == 'X') return 3 + 0;
-			else if (response == 'Y') return 1 + 3;
-			else if (response == 'Z') return 2 + 6;
-		}
-		else if (opponent == 'B')
-		{
-			if (response == 'X') return 1 + 0;
-			else if (response == 'Y') return 2 + 3;
-			else if (response == 'Z') return 3 + 6;
-
-		}
-		else if (opponent == 'C')
-		{
-			if (response == 'X') return 2 + 0;
-			else if (response == 'Y') return 3 + 3;
-			else if (response == 'Z') return 1 + 6;
-		}
-		return 0;
-	}
-
 	void Day2::run()
 	{
 		std::ifstream file("inputs/day2.txt");
@@ -70,8 +20,16 @@ namespace aoc
 			std::stringstream ss(line);
 			ss >> opponent >> response;
 
-			total_score_response_as_types_ += calc_response_as_type(opponent, response);
-			total_score_response_as_results_ += calc_response_as_result(opponent, response);
+			const int opponent_index = opponent - 'A';
+			const int response_index = response - 'X';
+			{
+				const int result_score = (((opponent_index * 2) + response_index + 1) % 3) * 3;
+				total_score_response_as_types_ += (response_index + 1) + result_score;
+			}
+			{
+				const int response_score = ((opponent_index + response_index + 2) % 3) + 1;
+				total_score_response_as_results_ += response_score + (response_index * 3);
+			}
 		}
 		file.close();
 	}

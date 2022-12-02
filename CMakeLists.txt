@@ -15,7 +15,7 @@ include_directories("C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0
 link_directories("${IMGUI}/build/src/Release")
 
 # Add source to this project's executable.
-add_executable (AdventOfCode_2022
+add_executable (AdventOfCode_2022 WIN32
 	"${IMGUI}/imgui.cpp"
 	"${IMGUI}/imgui_draw.cpp"
 	"${IMGUI}/imgui_tables.cpp"

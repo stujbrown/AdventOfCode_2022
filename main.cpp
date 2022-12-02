@@ -24,7 +24,7 @@ void add_days(vector<DayEntry>& day_functions)
 	day_functions.push_back(DayEntry("PLACEHOLDER", aoc::Day1::create));
 }
 
-int main(int argc, char* argv[])
+int WinMain(int argc, char* argv[])
 {
 	int day_to_run = -1;
 	if (argc > 0 && argc <= 64)
