@@ -11,6 +11,7 @@ namespace aoc
 		void draw() override;
 
 	private:
-
+		int duplicate_priority_total_ = 0;
+		int group_badge_total_ = 0;
 	};
 }
