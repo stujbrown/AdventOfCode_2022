@@ -9,7 +9,7 @@ namespace aoc
 	void Day2::run()
 	{
 		std::ifstream file = std::ifstream("inputs/day2.txt", std::ios_base::in);
-		std::array<char, 6> line;
+		auto line = std::array<char, 6>();
 
 		total_score_response_as_types_ = 0;
 		total_score_response_as_results_ = 0;

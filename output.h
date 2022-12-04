@@ -16,7 +16,10 @@ inline void ImGui_output_field(const char* label, const char* value)
 {
 	const size_t val_length = strlen(value);
 	char* val_str = (char*)_malloca(val_length + 1);
-	strncpy_s(val_str, val_length + 1, value, val_length + 1);
+	if (val_str != nullptr)
+	{
+		strncpy_s(val_str, val_length + 1, value, val_length + 1);
+	}
 
 	ImGui::Text(label);
 	ImGui::SameLine();
