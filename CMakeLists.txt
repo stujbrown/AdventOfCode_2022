@@ -23,15 +23,13 @@ add_executable (AdventOfCode_2022 WIN32
 	"${IMGUI}/backends/imgui_impl_dx11.cpp" 
 	"${IMGUI}/backends/imgui_impl_win32.cpp"
 	"main.cpp" 
-	"window.h" "window.cpp"
-	"day_entry.h"
-	"output.h"
-	"days/day.h"
-	"days/day1.h" "days/day1.cpp"
-	"days/day2.h" "days/day2.cpp"
-	"days/day3.h" "days/day3.cpp"
-	"days/day4.h" "days/day4.cpp"
-	"days/day5.h" "days/day5.cpp")
+	"window.cpp"
+	"days/day1.cpp"
+	"days/day2.cpp"
+	"days/day3.cpp"
+	"days/day4.cpp"
+	"days/day5.cpp"
+	"days/day6.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET AdventOfCode_2022 PROPERTY CXX_STANDARD 20)
