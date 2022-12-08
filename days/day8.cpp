@@ -4,7 +4,6 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <algorithm>
 
 namespace aoc
 {
@@ -19,7 +18,7 @@ namespace aoc
 	void scan_row(const std::vector<std::string>& grid, int row, std::vector<bool>& visible_states)
 	{
 		int highest_tree = -1;
-		for (int i = 0; i < (int)grid[0].size(); ++i)	update_state(grid, i, row, highest_tree, visible_states);
+		for (int i = 0; i < (int)grid[0].size(); ++i) update_state(grid, i, row, highest_tree, visible_states);
 		highest_tree = -1;
 		for (int i = (int)grid[0].size() - 1; i >= 0; --i) update_state(grid, i, row, highest_tree, visible_states);
 	}

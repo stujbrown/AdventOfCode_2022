@@ -42,9 +42,9 @@ namespace aoc
 			{
 				char* next_token = nullptr;
 				const int num_to_move = atoi(strtok_s(line.data() + 5, " ", &next_token));
-				strtok_s(nullptr, "m", &next_token);
+				(void)strtok_s(nullptr, "m", &next_token);
 				const int from_column = atoi(strtok_s(nullptr, " ", &next_token));
-				strtok_s(nullptr, "o", &next_token);
+				(void)strtok_s(nullptr, "o", &next_token);
 				const int to_column = atoi(strtok_s(nullptr, " ", &next_token));
 
 				if (is_crane2)
@@ -84,6 +84,9 @@ namespace aoc
 
 	void Day5::run()
 	{
+		highest_value_ = 0;
+		debug_stack_values_.clear();
+
 		run_for_crane(false, crane1_top_items_);
 		run_for_crane(true, crane2_top_items_);
 	}
@@ -96,7 +99,7 @@ namespace aoc
 			for (int i = 0; i < debug_stack_values_.size(); ++i)
 			{
 				*std::format_to(buffer.data(), "##day5Crane-{}", i + 1) = '\0';
-				ImGui::PlotHistogram(buffer.data(), debug_stack_values_[i].data(), debug_stack_values_[i].size(), 0, nullptr, 0.f, highest_value_, ImVec2(100, 200));
+				ImGui::PlotHistogram(buffer.data(), debug_stack_values_[i].data(), (int)debug_stack_values_[i].size(), 0, nullptr, 0.f, (float)highest_value_, ImVec2(100, 200));
 				ImGui::SameLine();
 			}
 		}
@@ -113,7 +116,7 @@ namespace aoc
 		std::for_each(stacks.begin(), stacks.end(), [&height_counter, &output](const std::vector<char>& s)
 			{
 				height_counter = std::max(height_counter, s.size());
-				output.back().push_back(s.size());
+				output.back().push_back(static_cast<float>(s.size()));
 			});
 	}
 }

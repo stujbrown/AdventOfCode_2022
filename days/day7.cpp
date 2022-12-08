@@ -14,6 +14,9 @@ namespace aoc
 
 	void Day7::run()
 	{
+		total_size_for_under_100000_ = 0;
+		total_size_for_dir_to_delete_ = 0;
+
 		std::ifstream file("inputs/day7.txt", std::ios_base::in);
 		std::string line;
 
