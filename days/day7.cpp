@@ -73,6 +73,5 @@ namespace aoc
 		ImGui_print_log("Dir sizes##Day7Log", log_);
 		ImGui_output_field("Total size of all directories of at most 100000", std::format("{}", total_size_for_under_100000_).c_str());
 		ImGui_output_field("TOtal size for directory to delete", std::format("{}", total_size_for_dir_to_delete_).c_str());
-
 	}
 }

@@ -2,15 +2,18 @@
 
 namespace aoc
 {
-	class Day? final : public Day
+	class Day8 final : public Day
 	{
 	public:
-		static Day* create() { return new Day?(); }
+		static Day* create() { return new Day8(); }
 
 		void run() override;
 		void draw() override;
 
 	private:
-
+		std::vector<std::string> grid_;
+		std::vector<bool> visible_states_;
+		int total_visible_ = 0;
+		size_t highest_score_ = 0;
 	};
 }
