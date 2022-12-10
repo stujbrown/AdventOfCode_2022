@@ -9,6 +9,7 @@
 #include "days/day7.h"
 #include "days/day8.h"
 #include "days/day9.h"
+#include "days/day10.h"
 
 #include "window.h"
 
@@ -34,6 +35,7 @@ void add_days(vector<DayEntry>& day_functions)
 	day_functions.push_back(DayEntry("Day 7: No Space Left On Device", aoc::Day7::create));
 	day_functions.push_back(DayEntry("Day 8: Treetop Tree House", aoc::Day8::create));
 	day_functions.push_back(DayEntry("Day 9: Rope Bridge", aoc::Day9::create));
+	day_functions.push_back(DayEntry("Day 10: Cathode-Ray Tube", aoc::Day10::create));
 }
 
 int WinMain(int argc, char* argv[])
