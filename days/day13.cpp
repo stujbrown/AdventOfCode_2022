@@ -54,14 +54,8 @@ namespace aoc
 				for (i = 0; i < left.size() && i < right.size(); ++i)
 				{
 					const int comparison = compare(left[i], right[i]);
-					if (comparison > 0)
-					{
-						return 1;
-					}
-					if (comparison < 0)
-					{
-						return -1;
-					}
+					if (comparison > 0)	return 1;
+					if (comparison < 0) return -1;
 				}
 				return left.size() - right.size();
 			}
@@ -111,13 +105,10 @@ namespace aoc
 				const auto completed_val = std::move(stack.top());
 				stack.pop();
 				if (stack.empty())
-				{
 					return completed_val;
-				}
 				else
-				{
 					stack.top().list_.push_back(std::move(completed_val));
-				}
+
 			}
 			else if (c == ',')
 			{
