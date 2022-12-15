@@ -44,6 +44,7 @@ namespace aoc
 			else
 				add_cycles(1, reg_x);
 		}
+		file.close();
 	}
 
 	void Day10::draw()

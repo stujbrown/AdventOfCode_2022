@@ -6,11 +6,14 @@
 
 namespace aoc
 {
-	struct Node
-	{		
-		std::string dir_name;
-		size_t total_size;
-	};
+	namespace day7
+	{
+		struct Node
+		{
+			std::string dir_name;
+			size_t total_size;
+		};
+	}
 
 	void Day7::run()
 	{
@@ -20,8 +23,8 @@ namespace aoc
 		std::ifstream file("inputs/day7.txt", std::ios_base::in);
 		std::string line;
 
-		std::vector<std::unique_ptr<Node>> nodes;
-		std::vector<Node*> stack;
+		std::vector<std::unique_ptr<day7::Node>> nodes;
+		std::vector<day7::Node*> stack;
 
 		while (std::getline(file, line))
 		{
@@ -36,7 +39,7 @@ namespace aoc
 					else
 					{
 						std::string dir(&line[5]);
-						nodes.push_back(std::unique_ptr<Node>(new Node{ .dir_name = dir, .total_size = 0 }));
+						nodes.push_back(std::unique_ptr<day7::Node>(new day7::Node{ .dir_name = dir, .total_size = 0 }));
 						stack.push_back(nodes.back().get());
 					}
 				}
@@ -46,7 +49,7 @@ namespace aoc
 				char* context = nullptr;
 				const size_t file_size = atoi(strtok_s(line.data(), " ", &context));
 				const char* file_name = strtok_s(nullptr, " ", &context);
-				for (Node* node : stack)
+				for (day7::Node* node : stack)
 				{
 					node->total_size += file_size;
 				}
@@ -57,7 +60,7 @@ namespace aoc
 		total_size_for_dir_to_delete_ = std::numeric_limits<size_t>::max();
 		const size_t deletion_required = 30000000 - (70000000 - nodes[0]->total_size);
 
-		for (const std::unique_ptr<Node>& node : nodes)
+		for (const std::unique_ptr<day7::Node>& node : nodes)
 		{
 			log_.push_back(std::format("{}: {}", node->dir_name, node->total_size));
 			if (node->total_size <= 100000)
