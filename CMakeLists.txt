@@ -37,7 +37,8 @@ add_executable (AdventOfCode_2022 WIN32
 	"days/day11.cpp"
 	"days/day12.cpp"
 	"days/day13.cpp"
-	"days/day14.cpp")
+	"days/day14.cpp"
+	"days/day15.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET AdventOfCode_2022 PROPERTY CXX_STANDARD 20)
